@@ -1,11 +1,10 @@
 CC = gcc
 TARGET = colors
-CFLAGS = -lm
 
 all:$(TARGET)
 
 $(TARGET):colors.c
-	$(CC) -o  $(TARGET) colors.c $(CFLAGS)
+	$(CC) -o  $(TARGET) colors.c 
 
 clean:$(TARGET)
 	rm -f $(TARGET)
