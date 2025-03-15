@@ -7,7 +7,7 @@ BINDIR = $(PREFIX)/bin
 all:$(TARGET)
 
 clean:$(TARGET)
-	rm $(TARGET)
+	rm $(TARGET) -f
 
 $(TARGET): stalactite.c
 	$(CC) $(CFLAGS) -o $(TARGET) stalactite.c

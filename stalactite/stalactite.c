@@ -17,10 +17,10 @@ void drawStalagtite(uint *stlgs, uint len){
     for (uint col = 0; col < len; col++){
       if((int)(stlgs[col] - row) == 0){
 
-        printf("V");
+        printf("▽ ");
       }
       else{
-        ((int)(stlgs[col] - row) > 0) ? printf("H"): printf(" ");
+        ((int)(stlgs[col] - row) > 0) ? printf("││"): printf("  ");
       }
     }
     printf("\n");
