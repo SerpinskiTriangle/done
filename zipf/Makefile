@@ -9,8 +9,8 @@ all:$(TARGET)
 clean:$(TARGET)
 	rm $(TARGET) -f
 
-$(TARGET): zipf.c
-	$(CC) $(CFLAGS) -o $(TARGET) zipf.c
+$(TARGET): zipf.c sort.c
+	$(CC) $(CFLAGS) -o $(TARGET) zipf.c sort.c
 
 install: $(TARGET)
 	install -Dm755 $(TARGET) $(DESTDIR)$(BINDIR)/$(TARGET)
