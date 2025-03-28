@@ -4,7 +4,7 @@
 
 
 #define MAX_WORD_SIZE 64
-#define MAX_WORD_COUNT (64 * 64) // idk
+#define MAX_WORD_COUNT (64 * 64 * 64) // idk
 
 
 struct word_node {
@@ -45,10 +45,15 @@ int same_word(char *word_1, int word_1_len, char *word_2, int word_2_len){
 
 
 int insert_word(char *word, int word_len, struct word_node *word_list, int word_list_len){
+  if (word_len == 0){
+    return -1;
+  }
+
+
   for (int index = 0; index < word_list_len; index++){
     if (same_word(word_list[index].word, word_list[index].word_length, word, word_len)){
       word_list[index].occurances++;
-      return 0;
+      return 1;
     }
 
 
@@ -100,12 +105,13 @@ int main(){
   while ((c = fgetc(file)) != EOF){
     //check for word terminating chars
     if(char_in(c, word_terminators, 3) == 1){
-      insert_word(word, current_word_length, word_list, MAX_WORD_COUNT);
+      if (insert_word(word, current_word_length, word_list, MAX_WORD_COUNT) == 0){
+        stored_words++;
+      }
+
       current_word_length = 0;
-      stored_words++;
       continue;
     }
-
 
     word[current_word_length] = c;
     current_word_length++;
@@ -116,5 +122,11 @@ int main(){
     print_word(word_list[index].word, word_list[index].word_length);
     printf(" occurances: %d\n", word_list[index].occurances);
   }
+
+
+  free(word);
+  free(word_list);
+
+
   return 0;
 }
